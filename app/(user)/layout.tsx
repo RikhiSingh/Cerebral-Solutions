@@ -15,7 +15,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <SessionProvider session={session}>
-            <RoleGate allowedRole={[UserRole.USER]}>
+            <RoleGate allowedRole={[UserRole.USER, UserRole.ADMIN]}>
                 <SidebarProvider>
                     <OwnerSidebar />
                     <SidebarInset>

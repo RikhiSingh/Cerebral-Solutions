@@ -8,7 +8,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       fallback={
         <div className="h-full flex items-center justify-center flex-col">
           <Image
-            src={"/app-icons/logo.png"}
+            src={"/app-icons/logo.webp"}
             alt="Cerebral Solutions Logo"
             className="mb-4 rounded-2xl"
             width={200}
@@ -26,7 +26,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         <div className="h-full bg-blue-500 hidden lg:flex items-center justify-center flex-col">
           <Image
-            src={"/app-icons/logo.png"}
+            src={"/app-icons/logo.webp"}
             alt="Cerebral Solutions Logo"
             className="mb-4 rounded-2xl"
             width={200}

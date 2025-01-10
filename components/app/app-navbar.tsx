@@ -9,7 +9,7 @@ const AppNavbar = () => {
       <SidebarTrigger className="ml-2" />
       <Link href={"/"}>
         <Image
-          src={"/app-icons/auth/logo-wide.png"}
+          src={"/app-icons/auth/logo-wide.webp"}
           alt="Cerebral Solutions Logo"
           className="rounded-md"
           width={200}

@@ -36,7 +36,7 @@ const DashboardPage = () => {
 
   return (
     <div className="h-full w-full flex items-center justify-center flex-col">
-      <Image src={"/app-icons/logo.png"} alt="Cerebral Solutions Logo" className='mb-4 rounded-2xl' width={200} height={200}/>
+      <Image src={"/app-icons/logo.webp"} alt="Cerebral Solutions Logo" className='mb-4 rounded-2xl' width={200} height={200}/>
       <PropagateLoader color="#2563eb" />
     </div>
   );

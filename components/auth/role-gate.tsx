@@ -45,7 +45,7 @@ export const RoleGate = ({ children, allowedRole }: RoleGateProps) => {
     return (
       <div className="h-full flex items-center justify-center flex-col bg-gray-200">
         <Image
-          src={"/app-icons/logo.png"}
+          src={"/app-icons/logo.webp"}
           alt="Cerebral Solutions Logo"
           className="mb-4 rounded-2xl"
           width={200}
