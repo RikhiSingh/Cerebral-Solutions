@@ -2,7 +2,7 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/components/ui/sidebar"
-import { OwnerSidebar } from "./_components/owner-sidebar"
+import { UserSidebar } from "./_components/user-sidebar"
 import AppNavbar from "@/components/app/app-navbar"
 import { SessionProvider } from "next-auth/react"
 import { auth } from "@/auth";
@@ -17,7 +17,7 @@ const Layout = async ({ children }: { children: React.ReactNode }) => {
         <SessionProvider session={session}>
             <RoleGate allowedRole={[UserRole.USER, UserRole.ADMIN]}>
                 <SidebarProvider>
-                    <OwnerSidebar />
+                    <UserSidebar />
                     <SidebarInset>
                         <AppNavbar />
                         <main className="p-4 h-full">
