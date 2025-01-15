@@ -12,6 +12,7 @@ enum UserRole {
   PRO
   ADMIN
 }
+//enum 
 
 model User {
   id                    String                 @id @default(cuid())
@@ -92,3 +93,5 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+//model for reports stored as Json, questionaire, questionaire response, 
