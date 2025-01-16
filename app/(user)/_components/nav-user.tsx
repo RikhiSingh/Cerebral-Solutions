@@ -3,10 +3,8 @@
 import {
   Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
   SettingsIcon,
-  Sparkles,
 } from "lucide-react"
 
 import {
@@ -88,21 +86,10 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles className="mr-2" />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <CreditCard className="mr-2" />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
                 <Bell className="mr-2" />
                 Notifications
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              {/* <DropdownMenuSeparator /> */}
               <Link href="/owner/settings">
                 <DropdownMenuItem className="cursor-pointer">
                   <SettingsIcon className="mr-2" />
