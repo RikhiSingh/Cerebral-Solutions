@@ -1,17 +1,8 @@
-"use client"
+"use client";
 
-import {
-  Bell,
-  ChevronsUpDown,
-  LogOut,
-  SettingsIcon,
-} from "lucide-react"
+import { Bell, ChevronsUpDown, LogOut, SettingsIcon } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,26 +11,25 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { FaUser } from "react-icons/fa"
-import { LogoutButton } from "@/components/auth/logout-button"
-import Link from "next/link"
-import { useCurrentUser } from "@/hooks/use-current-user"
+} from "@/components/ui/sidebar";
+import { FaUser } from "react-icons/fa";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 export function NavUser() {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
-  const user = useCurrentUser();
-  const name = user?.name;
-  const email = user?.email;
-  const image = user?.image;
-  const role = user?.role;
+  const { user } = useUser();
+
+  const name = user?.firstName || "User";
+  const email = user?.emailAddresses?.[0]?.emailAddress || "No email";
+  const image = user?.imageUrl;
 
   return (
     <SidebarMenu>
@@ -78,7 +68,6 @@ export function NavUser() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{name} ({role})</span>
                   <span className="truncate text-xs">{email}</span>
                 </div>
               </div>
@@ -98,15 +87,13 @@ export function NavUser() {
               </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <LogoutButton>
-              <DropdownMenuItem className="cursor-pointer">
-                <LogOut className="mr-2" />
-                Log out
-              </DropdownMenuItem>
-            </LogoutButton>
+            <DropdownMenuItem className="cursor-pointer">
+              <LogOut className="mr-2" />
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }

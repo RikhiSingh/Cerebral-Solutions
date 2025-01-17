@@ -16,8 +16,6 @@ import {
 import { BrainCircuitIcon, LogInIcon, Menu, UserPlus2Icon } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { LoginButton } from "@/components/auth/login-button";
-import { SignUpButton } from "@/components/auth/signup-button";
 
 interface RouteProps {
   href: string;
@@ -90,20 +88,16 @@ export const Navbar = () => {
                   ))}
                   <div className="flex gap-4">
                   <Button>
-                    <LoginButton>
                       <div className="flex flex-row items-center">
                         <LogInIcon className="mr-2 w-5 h-5" />
                         Login
                       </div>
-                    </LoginButton>
                   </Button>
                   <Button variant="outline">
-                    <SignUpButton>
                       <div className="flex flex-row items-center">
                         <UserPlus2Icon className="mr-2 w-5 h-5" />
                         SignUp
                       </div>
-                    </SignUpButton>
                   </Button>
                   </div>
                 </nav>
@@ -129,20 +123,16 @@ export const Navbar = () => {
 
           <div className="hidden md:flex gap-2">
             <Button>
-              <LoginButton>
                 <div className="flex flex-row items-center">
                   <LogInIcon className="mr-2 w-5 h-5" />
                   Login
                 </div>
-              </LoginButton>
             </Button>
             <Button variant="outline">
-              <SignUpButton>
                 <div className="flex flex-row items-center">
                   <UserPlus2Icon className="mr-2 w-5 h-5" />
                   SignUp
                 </div>
-              </SignUpButton>
             </Button>
           </div>
         </NavigationMenuList>

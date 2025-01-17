@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useCurrentUser } from "@/hooks/use-current-user";
 
 const OwnerDashboard = () => {
-    const user = useCurrentUser();
 
     return (
         <div className="flex items-center justify-between">
@@ -13,7 +11,7 @@ const OwnerDashboard = () => {
                     Dashboard
                 </h1>
                 <span>
-                    Welcome Back, {user?.name} 👋🏻
+                    Welcome Back, 👋🏻
                 </span>
             </div>
             <div>

@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { HeroCards } from "./HeroCards";
-import { LoginButton } from "@/components/auth/login-button";
 import { BrainCircuitIcon } from "lucide-react";
 
 export const Hero = () => {
@@ -30,12 +29,11 @@ export const Hero = () => {
           <div className="flex-1">
             <Button className="w-full">
               <BrainCircuitIcon className="h-6 w-6 mr-2" />
-              <LoginButton>Get Started</LoginButton>
+              Get Started
             </Button>
           </div>
         </div>
       </div>
-
       {/* Hero cards sections */}
       <div className="z-10">
         <HeroCards />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SidebarTrigger } from "../ui/sidebar";
-import { UserButton } from "../auth/user-button";
+import { UserButton } from "@clerk/nextjs";
 
 const AppNavbar = () => {
   return (
