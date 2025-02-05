@@ -41,7 +41,7 @@ const teamList: TeamProps[] = [
     ],
   },
   {
-    imageUrl: "/app-icons/dev/rikhi.jpeg",
+    imageUrl: "/app-icons/dev/merrick.jpeg",
     name: "Merrick Pilon",
     position: "Lead Developer",
     description: "Lead Developer at Cerebral Solutions Team",
@@ -57,7 +57,7 @@ const teamList: TeamProps[] = [
     ],
   },
   {
-    imageUrl: "/app-icons/dev/rikhi.jpeg",
+    imageUrl: "/app-icons/dev/harsh.jpeg",
     name: "Harsh",
     position: "Lead Developer",
     description: "Lead Developer at Cerebral Solutions Team",
