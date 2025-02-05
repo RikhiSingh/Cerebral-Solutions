@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 
 const OwnerDashboard = () => {
@@ -15,11 +14,6 @@ const OwnerDashboard = () => {
                 <span>
                     Welcome Back, {user?.name} 👋🏻
                 </span>
-            </div>
-            <div>
-                <Button>
-                    Add Property
-                </Button>
             </div>
         </div>
     );
