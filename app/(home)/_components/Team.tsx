@@ -48,11 +48,11 @@ const teamList: TeamProps[] = [
     socialNetworks: [
       {
         name: "Linkedin",
-        url: "https://www.linkedin.com/in/rikhi-singh",
+        url: "https://www.linkedin.com/in/merrick-pilon/",
       },
       {
         name: "GitHub",
-        url: "https://github.com/rikhisingh",
+        url: "https://github.com/MerrickPilon7730",
       },
     ],
   },
