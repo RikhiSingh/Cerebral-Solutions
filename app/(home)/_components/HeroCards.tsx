@@ -98,7 +98,9 @@ export const HeroCards = () => {
         </CardHeader>
 
         <CardContent>
-          <Button className="w-full">Start Now</Button>
+          <Button className="w-full">
+            <Link href={"/questionnaire"}>Start Now</Link>
+          </Button>
         </CardContent>
 
         <hr className="w-4/5 m-auto mb-4" />
