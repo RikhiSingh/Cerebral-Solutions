@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../(home)/_components/Navbar";
 import { RiseLoader } from "react-spinners";
+import { SessionProvider } from "next-auth/react";
 
 const QuestionnairePageLayout = ({
   children,
@@ -34,10 +35,12 @@ const QuestionnairePageLayout = ({
   }
 
   return (
-    <div>
-      <Navbar />
-      {children}
-    </div>
+    <SessionProvider>
+      <div>
+        <Navbar />
+        {children}
+      </div>
+    </SessionProvider>
   );
 };
 

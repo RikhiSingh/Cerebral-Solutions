@@ -2,10 +2,14 @@
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { questions } from "@/constants/questions";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function Survey() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+  const router = useRouter();
+  const { data: session } = useSession();
 
   // Disable body scroll when the Survey component mounts
   useEffect(() => {
@@ -41,7 +45,16 @@ export default function Survey() {
   // Final submission
   const handleSubmit = () => {
     console.log("User answers:", answers);
-    alert("Submitted! Check console for answers.");
+    localStorage.setItem("surveyResponses", JSON.stringify(answers));
+    // Only redirect if there is no active session
+    if (!session) {
+      router.push("/auth/register");
+    } else {
+      // call  API
+      console.log("User is already authenticated.");
+      // push to report
+      router.push("/user/reports");
+    }
   };
 
   const isLastQuestion = currentStep === questions.length - 1;
