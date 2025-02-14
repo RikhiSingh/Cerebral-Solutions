@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { db } from "@/lib/db";
 import OpenAI from "openai";
 
 interface AiProps {
-  responses: JSON;
+  responses: any;
+  session: string;
 }
 
-export const ai = async ({ responses }: AiProps) => {
+export const ai = async ({ responses, session }: AiProps) => {
   if (!responses) return { error: "No responses provided!" };
 
   const openai = new OpenAI({
@@ -18,7 +21,6 @@ export const ai = async ({ responses }: AiProps) => {
     assistant_id: "asst_",
   });
 
-  // Wait for the run to complete
   let run = await openai.beta.threads.runs.retrieve(thread.id, runResponse.id);
   while (run.status !== "completed") {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -35,11 +37,22 @@ export const ai = async ({ responses }: AiProps) => {
   if (content.type !== "text")
     throw new Error("The first message content is not of type text.");
 
-  // Clean and parse the response text
   const cleanedText = content.text.value.replace(/```json\n?|```/g, "");
+  let parsedResult;
   try {
-    return JSON.parse(cleanedText);
+    parsedResult = JSON.parse(cleanedText);
   } catch {
     throw new Error("Failed to parse OpenAI response: " + cleanedText);
   }
+
+  // Save both the user's responses and the AI result in the database.
+  const savedResponse = await db.responses.create({
+    data: {
+      userId: session,
+      response: responses,
+      result: parsedResult,
+    },
+  });
+
+  return savedResponse;
 };

@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { questions } from "@/constants/questions";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { ai } from "@/actions/ai/ai";
 
 export default function Survey() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -50,7 +51,7 @@ export default function Survey() {
     if (!session) {
       router.push("/auth/register");
     } else {
-      // call  API
+      ai({ responses: answers, session: session.user.id as string });
       console.log("User is already authenticated.");
       // push to report
       router.push("/user/reports");

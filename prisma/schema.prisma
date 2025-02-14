@@ -12,6 +12,7 @@ enum UserRole {
   PRO
   ADMIN
 }
+
 //enum 
 
 model User {
@@ -28,11 +29,10 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Responses Responses[]
 }
-
-
 
 model Account {
   id                       String  @id @default(cuid())
@@ -97,3 +97,15 @@ model TwoFactorConfirmation {
 }
 
 //model for reports stored as Json, questionaire, questionaire response, 
+
+model Responses {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  response Json
+  result   Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
