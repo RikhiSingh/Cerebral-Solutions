@@ -31,8 +31,12 @@ const data = {
       // isActive: true,
       items: [
         {
-          title: "All Reports",
+          title: "Latest Reports",
           url: "/user/reports",
+        },
+        {
+          title: "All Reports",
+          url: "/user/all-reports",
         },
       ],
     },

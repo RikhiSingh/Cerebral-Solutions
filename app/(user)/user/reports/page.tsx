@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { saveSurvey } from "@/actions/survey/saveSurvey";
-import FirstResponse from "./_components/first-response";
+import FirstResponse from "../_components/first-response";
 
 export default function Reports() {
   const { data: session } = useSession();
