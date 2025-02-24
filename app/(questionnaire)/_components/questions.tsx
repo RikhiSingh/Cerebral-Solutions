@@ -54,7 +54,7 @@ export default function Survey() {
 
       if (!session) {
         localStorage.setItem("surveyResult", JSON.stringify(aiResult));
-        router.push("/auth/register");
+        router.push("/auth/login");
       } else {
         router.push("/user/reports");
       }

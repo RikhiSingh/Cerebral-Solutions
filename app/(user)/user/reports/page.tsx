@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { saveSurvey } from "@/actions/survey/saveSurvey";
+import FirstResponse from "./_components/first-response";
 
 export default function Reports() {
   const { data: session } = useSession();
@@ -38,7 +39,7 @@ export default function Reports() {
   return (
     <div>
       <h1>User Reports</h1>
-      {/* Your report UI goes here */}
+      <FirstResponse />
     </div>
   );
 }

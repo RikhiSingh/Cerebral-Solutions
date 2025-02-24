@@ -9,7 +9,11 @@ interface SaveSurveyProps {
   result: any;
 }
 
-export const saveSurvey = async ({ userId, responses, result }: SaveSurveyProps) => {
+export const saveSurvey = async ({
+  userId,
+  responses,
+  result,
+}: SaveSurveyProps) => {
   const savedSurvey = await db.responses.create({
     data: {
       userId,
