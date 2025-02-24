@@ -10,7 +10,6 @@ export default function Reports() {
   const router = useRouter();
 
   useEffect(() => {
-    // Only proceed if the user is logged in.
     if (session && session.user?.id) {
       const cachedResponses = localStorage.getItem("surveyResponses");
       const cachedResult = localStorage.getItem("surveyResult");
@@ -22,7 +21,6 @@ export default function Reports() {
         saveSurvey({ userId: session.user.id as string, responses, result })
           .then(() => {
             console.log("Cached survey responses saved.");
-            // Remove cached data after saving.
             localStorage.removeItem("surveyResponses");
             localStorage.removeItem("surveyResult");
           })
@@ -31,15 +29,9 @@ export default function Reports() {
           });
       }
     } else {
-      // If no session, you may redirect to login.
       router.push("/auth/login");
     }
   }, [session, router]);
 
-  return (
-    <div>
-      <h1>User Reports</h1>
-      <FirstResponse />
-    </div>
-  );
+  return <FirstResponse />;
 }
