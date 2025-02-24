@@ -6,8 +6,8 @@ import { db } from "@/lib/db";
 export const getFirstSurveyResponse = async (userId: string): Promise<any> => {
   const response = await db.responses.findFirst({
     where: { userId },
-    select: { result: true },
-    orderBy: { createdAt: "asc" },
+    select: { result: true, response: true },
+    orderBy: { createdAt: "desc" },
   });
   return response;
 };

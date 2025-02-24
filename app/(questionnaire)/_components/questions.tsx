@@ -1,4 +1,3 @@
-// Survey.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -6,12 +5,28 @@ import { questions } from "@/constants/questions";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ai } from "@/actions/ai/ai";
+import { PacmanLoader } from "react-spinners";
 
 export default function Survey() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
+  const [loadingAi, setLoadingAi] = useState(false);
+  const [currentStatIndex, setCurrentStatIndex] = useState(0);
   const router = useRouter();
   const { data: session } = useSession();
+
+  const mentalStats = [
+    "Decoding the intricate patterns of your emotional landscape...",
+    "Calibrating your inner energy fluctuations for optimal balance...",
+    "Dissecting the nuances of your sleep architecture and dream states...",
+    "Unraveling the complex signals of stress and tension in your mind...",
+    "Mapping the vibrant network of your social connections and support...",
+    "Synthesizing cognitive insights from your unique response profile...",
+    "Charting the course of your resilience and adaptive strategies...",
+    "Interpreting subtle cues in your mood dynamics for hidden trends...",
+    "Projecting your future mental well-being with precision...",
+    "Refining the symphony of your emotions into a harmonious balance...",
+  ];
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -19,6 +34,18 @@ export default function Survey() {
       document.body.style.overflow = "";
     };
   }, []);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    if (loadingAi) {
+      intervalId = setInterval(() => {
+        setCurrentStatIndex((prev) => (prev + 1) % mentalStats.length);
+      }, 4000);
+    }
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [loadingAi]);
 
   const handleSelect = (answer: string) => {
     setAnswers((prevAnswers) => {
@@ -43,15 +70,15 @@ export default function Survey() {
   const handleSubmit = async () => {
     console.log("User answers:", answers);
     localStorage.setItem("surveyResponses", JSON.stringify(answers));
-
     try {
-      // Call the AI function. If session exists, the server action will save to DB.
+      // Begin AI processing and show the loading screen.
+      setLoadingAi(true);
       const aiResult = await ai({
         responses: answers,
         session: session?.user.id,
       });
       console.log("AI result:", aiResult);
-
+      setLoadingAi(false);
       if (!session) {
         localStorage.setItem("surveyResult", JSON.stringify(aiResult));
         router.push("/auth/login");
@@ -60,12 +87,24 @@ export default function Survey() {
       }
     } catch (error) {
       console.error("Error processing survey responses:", error);
+      setLoadingAi(false);
     }
   };
 
   const isLastQuestion = currentStep === questions.length - 1;
   const selectedAnswer = answers[currentStep];
   const progressPercentage = ((currentStep + 1) / questions.length) * 100;
+
+  if (loadingAi) {
+    return (
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-white z-50">
+        <PacmanLoader color="#4F46E5" size={30} />
+        <div className="mt-8 text-xl font-semibold text-gray-700">
+          {mentalStats[currentStatIndex]}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 p-6">

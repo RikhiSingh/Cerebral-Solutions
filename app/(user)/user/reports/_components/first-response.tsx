@@ -6,11 +6,8 @@ import { getFirstSurveyResponse } from "@/actions/response/reponse";
 import { questions } from "@/constants/questions";
 
 interface SurveyResponse {
-  id: string;
-  response: any;
   result: any;
-  createdAt: string;
-  updatedAt: string;
+  response: any;
 }
 
 export default function FirstResponseUI() {
@@ -58,16 +55,20 @@ export default function FirstResponseUI() {
     );
 
   // Destructure result data from the survey response
-  const { result: surveyResult, response: userResponses } =
-    firstResponse.result;
+  const { result: surveyResult, response: userResponses } = firstResponse;
   const { score, insights, analysis, recommendations } = surveyResult;
 
-  // Determine color based on the score (adjust thresholds as needed)
-  let scoreColor = "text-green-500";
-  if (score >= 30 && score <= 60) {
-    scoreColor = "text-yellow-500";
-  } else if (score > 60) {
+  let scoreColor = "";
+  if (score < 30) {
     scoreColor = "text-red-500";
+  } else if (score >= 30 && score < 40) {
+    scoreColor = "text-orange-500";
+  } else if (score >= 40 && score < 60) {
+    scoreColor = "text-amber-500";
+  } else if (score >= 60 && score < 80) {
+    scoreColor = "text-yellow-500";
+  } else {
+    scoreColor = "text-green-500";
   }
 
   return (
