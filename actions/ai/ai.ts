@@ -6,7 +6,7 @@ import OpenAI from "openai";
 
 interface AiProps {
   responses: any;
-  session: string;
+  session?: string;
 }
 
 export const ai = async ({ responses, session }: AiProps) => {
@@ -18,7 +18,7 @@ export const ai = async ({ responses, session }: AiProps) => {
 
   const thread = await openai.beta.threads.create();
   const runResponse = await openai.beta.threads.runs.create(thread.id, {
-    assistant_id: "asst_",
+    assistant_id: "asst_QMe7jAvAvYNAD6fTQgcP4Ual",
   });
 
   let run = await openai.beta.threads.runs.retrieve(thread.id, runResponse.id);
@@ -45,14 +45,17 @@ export const ai = async ({ responses, session }: AiProps) => {
     throw new Error("Failed to parse OpenAI response: " + cleanedText);
   }
 
-  // Save both the user's responses and the AI result in the database.
-  const savedResponse = await db.responses.create({
-    data: {
-      userId: session,
-      response: responses,
-      result: parsedResult,
-    },
-  });
-
-  return savedResponse;
+  // If a session (user id) is provided, save to DB; otherwise, just return the result.
+  if (session) {
+    const savedResponse = await db.responses.create({
+      data: {
+        userId: session,
+        response: responses,
+        result: parsedResult,
+      },
+    });
+    return savedResponse;
+  } else {
+    return { response: responses, result: parsedResult };
+  }
 };

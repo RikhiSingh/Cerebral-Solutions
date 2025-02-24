@@ -1,3 +1,4 @@
+// Survey.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -12,7 +13,6 @@ export default function Survey() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  // Disable body scroll when the Survey component mounts
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -20,41 +20,46 @@ export default function Survey() {
     };
   }, []);
 
-  // Update the answer for the current question when an option is selected.
   const handleSelect = (answer: string) => {
-    setAnswers((prevAnswers: (string | null)[]) => {
+    setAnswers((prevAnswers) => {
       const updatedAnswers = [...prevAnswers];
       updatedAnswers[currentStep] = answer;
       return updatedAnswers;
     });
   };
 
-  // Proceed to the next question.
   const handleNext = () => {
     if (answers[currentStep] !== null && currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     }
   };
 
-  // Go back to the previous question.
   const handlePrevious = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
   };
 
-  // Final submission
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("User answers:", answers);
     localStorage.setItem("surveyResponses", JSON.stringify(answers));
-    // Only redirect if there is no active session
-    if (!session) {
-      router.push("/auth/register");
-    } else {
-      ai({ responses: answers, session: session.user.id as string });
-      console.log("User is already authenticated.");
-      // push to report
-      router.push("/user/reports");
+
+    try {
+      // Call the AI function. If session exists, the server action will save to DB.
+      const aiResult = await ai({
+        responses: answers,
+        session: session?.user.id,
+      });
+      console.log("AI result:", aiResult);
+
+      if (!session) {
+        localStorage.setItem("surveyResult", JSON.stringify(aiResult));
+        router.push("/auth/register");
+      } else {
+        router.push("/user/reports");
+      }
+    } catch (error) {
+      console.error("Error processing survey responses:", error);
     }
   };
 
