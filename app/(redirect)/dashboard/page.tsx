@@ -1,4 +1,3 @@
-// pages/dashboard.tsx or app/dashboard/page.tsx
 "use client";
 
 import { useCurrentRole } from "@/hooks/use-current-role";
