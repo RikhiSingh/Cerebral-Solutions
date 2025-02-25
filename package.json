@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev --turbopack\" \"npx peerjs --port 9000 --key peerjs --path /myapp\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
