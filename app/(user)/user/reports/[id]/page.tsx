@@ -1,14 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { redirect, notFound } from "next/navigation";
 import { getSurveyResponseById } from "@/actions/response/getSurveyResponseById";
 import { auth } from "@/auth";
 import ReportContent from "../../_components/report-content";
 
-export default async function ReportDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = await params;
+export default async function ReportDetailPage(props: any) {
+  const { id } = await props.params;
 
   const session = await auth();
   if (!session) {
