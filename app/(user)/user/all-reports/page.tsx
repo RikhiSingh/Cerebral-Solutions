@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { getAllSurveyResponses } from "@/actions/response/getAllSurveyResponses";
+import { PropagateLoader } from "react-spinners";
+import Image from "next/image";
 
 interface Report {
   id: string;
@@ -42,8 +44,15 @@ export default function AllReports() {
 
   if (status === "loading" || loading) {
     return (
-      <div className="flex items-center justify-center h-screen text-xl">
-        Loading...
+      <div className="h-full w-full flex items-center justify-center flex-col">
+        <Image
+          src={"/app-icons/logo.webp"}
+          alt="Cerebral Solutions Logo"
+          className="mb-4 rounded-2xl"
+          width={200}
+          height={200}
+        />
+        <PropagateLoader color="#2563eb" />
       </div>
     );
   }

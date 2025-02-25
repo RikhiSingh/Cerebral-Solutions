@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { getFirstSurveyResponse } from "@/actions/response/reponse";
 import ReportContent from "./report-content";
+import { PropagateLoader } from "react-spinners";
+import Image from "next/image";
 
 interface SurveyResponse {
   result: any;
@@ -42,8 +44,15 @@ export default function FirstResponseUI() {
 
   if (status === "loading" || loading)
     return (
-      <div className="flex items-center justify-center h-screen text-xl">
-        Loading...
+      <div className="h-full w-full flex items-center justify-center flex-col">
+        <Image
+          src={"/app-icons/logo.webp"}
+          alt="Cerebral Solutions Logo"
+          className="mb-4 rounded-2xl"
+          width={200}
+          height={200}
+        />
+        <PropagateLoader color="#2563eb" />
       </div>
     );
   if (error)
