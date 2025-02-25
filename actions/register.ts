@@ -3,6 +3,7 @@
 import { db } from "@/lib/db";
 import * as z from "zod";
 import bcrypt from "bcryptjs";
+import { v4 as uuidv4 } from "uuid";
 
 import { RegisterSchema } from "@/schemas";
 import { getUserByEmail } from "@/data/user";
@@ -25,11 +26,14 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         return { error: "Email already in use!" };
     };
 
+    const peerID = uuidv4();
+
     await db.user.create({
         data: {
             email,
             password: hashedPassword,
-            name
+            name,
+            peerID
         },
     });
 
