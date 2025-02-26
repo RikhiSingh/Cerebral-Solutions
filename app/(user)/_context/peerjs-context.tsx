@@ -3,6 +3,8 @@ import React, { createContext, useContext, useEffect, useState, useRef } from "r
 import Peer from "peerjs";
 import { getPeerID } from "@/data/peerID";
 
+const hostIP = process.env.NEXT_PUBLIC_PEERJS_DOMAIN!;
+
 interface PeerContextType {
   peer: Peer | null;
   peerId: string | null;
@@ -45,7 +47,7 @@ export const PeerProvider: React.FC<PeerProviderProps> = ({ children, userId }) 
         setPeerId(storedPeerID);
 
         const peer = new Peer(storedPeerID, {
-          host: "10.0.0.200",
+          host: hostIP,
           port: 9000,
           path: "/myapp",
           secure: false,
