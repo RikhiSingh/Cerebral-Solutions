@@ -21,6 +21,7 @@ model User {
   username              String?                @unique @db.VarChar(20)
   email                 String?                @unique
   emailVerified         DateTime?
+  peerID                String                 @unique 
   image                 String?
   // optional because we wont receive any password when logged in using OAuth
   password              String?

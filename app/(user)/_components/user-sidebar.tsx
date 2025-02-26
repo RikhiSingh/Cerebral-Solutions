@@ -5,6 +5,7 @@ import {
   Building2Icon,
   LayoutDashboardIcon,
   SettingsIcon,
+  VideoIcon
 } from "lucide-react"
 
 import { NavMain } from "./nav-main"
@@ -39,6 +40,11 @@ const data = {
           url: "/user/all-reports",
         },
       ],
+    },
+    {
+      title: "Video Chat",
+      url : "/user/video-chat",
+      icon : VideoIcon
     },
     {
       title: "Settings",
