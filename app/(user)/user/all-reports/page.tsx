@@ -11,7 +11,6 @@ interface Report {
   result: {
     score: number;
     insights: string;
-    // add any other fields you need
   };
   createdAt: string;
 }
