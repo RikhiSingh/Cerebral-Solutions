@@ -1,7 +1,7 @@
 "use client";
-import React, { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
+import React, { createContext, useContext, useEffect, useState, useRef } from "react";
 import Peer from "peerjs";
-import { getPeerID } from "@/data/peerID"; 
+import { getPeerID } from "@/data/peerID";
 
 interface PeerContextType {
   peer: Peer | null;
@@ -19,8 +19,8 @@ export const usePeer = (): PeerContextType => {
 };
 
 interface PeerProviderProps {
-  children: ReactNode;
-  userId: string; 
+  children: React.ReactNode;
+  userId: string;
 }
 
 export const PeerProvider: React.FC<PeerProviderProps> = ({ children, userId }) => {
@@ -28,38 +28,43 @@ export const PeerProvider: React.FC<PeerProviderProps> = ({ children, userId }) 
   const peerInstance = useRef<Peer | null>(null);
 
   useEffect(() => {
-    const initializePeer = async () => {
-      const storedPeerID = await getPeerID(userId); 
+    if (!userId) {
+      console.error("No userId provided to PeerProvider!");
+      return;
+    }
 
-      if (!storedPeerID) {
-        console.error("No peerID found for user:", userId);
-        return;
+    const fetchPeerID = async () => {
+      try {
+        const storedPeerID = await getPeerID(userId);
+
+        if (!storedPeerID) {
+          console.error(`No peerID found for user: ${userId}`);
+          return;
+        }
+
+        setPeerId(storedPeerID);
+
+        const peer = new Peer(storedPeerID, {
+          host: "10.0.0.200",
+          port: 9000,
+          path: "/myapp",
+          secure: false,
+          debug: 3,
+        });
+
+        peerInstance.current = peer;
+
+        peer.on("error", (err) => console.error("PeerJS Error:", err));
+
+        return () => {
+          peer.destroy();
+        };
+      } catch (error) {
+        console.error("Error fetching peerID:", error);
       }
-
-      const peer = new Peer(storedPeerID, {
-        host: "10.0.0.200", 
-        port: 9000,
-        path: "/myapp",
-        secure: false,
-        debug: 3,
-      });
-
-      peer.on("open", (id) => {
-        setPeerId(id);
-      });
-
-      peer.on("error", (err) => {
-        console.error("PeerJS Error:", err);
-      });
-
-      peerInstance.current = peer;
     };
 
-    initializePeer();
-
-    return () => {
-      peerInstance.current?.destroy();
-    };
+    fetchPeerID();
   }, [userId]);
 
   return (

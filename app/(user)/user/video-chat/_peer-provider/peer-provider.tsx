@@ -1,18 +1,20 @@
 "use client";
 import { PeerProvider } from "../../../_context/peerjs-context";
-import { AppProps } from "next/app";
 import { useSession } from "next-auth/react";
 
-export default function VideoChatPage({Component, pageProps} : AppProps) {
-    const { data: session } = useSession();
+export default function VideoChatPage({ children }: { children: React.ReactNode }) {
+  const { data: session, status } = useSession();
 
-    if (!session?.user?.id) {
-        return <p>Loading...</p>; //ask Rikhi how to manage if user is not logged int
-    }
+  if (status === "loading") return <p>Loading...</p>;
 
-    return (
-        <PeerProvider userId={session.user.id}> 
-            <Component {...pageProps} />
-        </PeerProvider>
-    );
+  if (!session?.user?.id) {
+    console.error("No user session found!");
+    return <p>Please log in to access video chat.</p>;
+  }
+
+  return (
+    <PeerProvider userId={session.user.id}> 
+      {children}
+    </PeerProvider>
+  );
 }
