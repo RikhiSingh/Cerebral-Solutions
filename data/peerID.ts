@@ -7,7 +7,7 @@ export const getPeerID = async (userId: string) => {
       const data = await res.json();
       return data.peerID || null;
     } catch (error) {
-      console.error("❌ Error fetching peerID:", error);
+      console.error("Error fetching peerID:", error);
       return null;
     }
   };
