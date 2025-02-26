@@ -1,15 +1,16 @@
-import { NextResponse } from "next/server";
-import { db } from "@/lib/db"; // Ensure this only runs on the server
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
 
-export async function GET(req: Request, context: { params: { userId: string } }) {
+export async function GET(req: NextRequest, context: any) {
   try {
-    const userId = context.params?.userId;
-    if (!userId) {
+    const params = await context.params;
+
+    if (!params?.userId) {
       return NextResponse.json({ error: "Missing userId" }, { status: 400 });
     }
 
     const user = await db.user.findUnique({
-      where: { id: userId },
+      where: { id: params.userId },
       select: { peerID: true },
     });
 
