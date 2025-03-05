@@ -1,6 +1,6 @@
 import ClientProvider from "../_components/client-provider";
 
-const Layout = ({ children }: { children: React.ReactNode, userId: string }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
     <ClientProvider >
         {children}
