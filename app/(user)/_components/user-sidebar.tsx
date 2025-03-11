@@ -1,21 +1,22 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Building2Icon,
   LayoutDashboardIcon,
   SettingsIcon,
-  VideoIcon
-} from "lucide-react"
+  VideoIcon,
+  CalendarDaysIcon,
+} from "lucide-react";
 
-import { NavMain } from "./nav-main"
-import { NavUser } from "./nav-user"
+import { NavMain } from "./nav-main";
+import { NavUser } from "./nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -23,7 +24,7 @@ const data = {
     {
       title: "Dashboard",
       url: "/user",
-      icon: LayoutDashboardIcon
+      icon: LayoutDashboardIcon,
     },
     {
       title: "Reports",
@@ -43,8 +44,13 @@ const data = {
     },
     {
       title: "Video Chat",
-      url : "/user/video-chat",
-      icon : VideoIcon
+      url: "/user/video-chat",
+      icon: VideoIcon,
+    },
+    {
+      title: "Schedule Appointment",
+      url: "/user/schedule-appointment",
+      icon: CalendarDaysIcon,
     },
     {
       title: "Settings",
@@ -52,11 +58,11 @@ const data = {
       icon: SettingsIcon,
     },
   ],
- 
-}
+};
 
-export function UserSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
+export function UserSidebar({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props} className="">
       <SidebarContent>
@@ -67,5 +73,5 @@ export function UserSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

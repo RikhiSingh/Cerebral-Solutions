@@ -68,6 +68,14 @@ export default function AllReports() {
     );
   }
 
+  const getScoreColor = (score: number) => {
+    if (score < 30) return "text-red-500";
+    if (score >= 30 && score < 40) return "text-orange-500";
+    if (score >= 40 && score < 60) return "text-amber-500";
+    if (score >= 60 && score < 80) return "text-yellow-500";
+    return "text-green-500";
+  };
+
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-4">
       {reports.map((report) => (
@@ -79,7 +87,15 @@ export default function AllReports() {
           <h2 className="text-xl font-bold">
             Report on {new Date(report.createdAt).toLocaleDateString()}
           </h2>
-          <p className="mt-2">Score: {report.result.score}</p>
+          <p className="text-lg">
+            Score:{" "}
+            <span
+              className={`font-semibold ${getScoreColor(report.result.score)}`}
+            >
+              {report.result.score.toFixed(2)}
+            </span>{" "}
+            / 100
+          </p>
           <p className="text-gray-600 mt-1">
             {report.result.insights.slice(0, 100)}...
           </p>

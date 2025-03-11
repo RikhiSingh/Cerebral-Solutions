@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { ai } from "@/actions/ai/ai";
 import { PacmanLoader } from "react-spinners";
+import { Button } from "@/components/ui/button";
 
 export default function Survey() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -176,6 +177,12 @@ export default function Survey() {
               Next <FaArrowRight className="ml-2" />
             </button>
           )}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Button onClick={() => router.push("/questionnaire/talk")}>
+            Talk to AI
+          </Button>
         </div>
       </div>
     </div>
