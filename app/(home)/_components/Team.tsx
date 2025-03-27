@@ -41,7 +41,7 @@ const teamList: TeamProps[] = [
     ],
   },
   {
-    imageUrl: "/app-icons/dev/merrick.jpeg",
+    imageUrl: "/app-icons/dev/merrick.jpg",
     name: "Merrick Pilon",
     position: "Lead Developer",
     description: "Lead Developer at Cerebral Solutions Team",

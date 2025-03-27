@@ -7,6 +7,7 @@ import {
   SettingsIcon,
   VideoIcon,
   CalendarDaysIcon,
+  BookOpenCheckIcon,
 } from "lucide-react";
 
 import { NavMain } from "./nav-main";
@@ -56,6 +57,11 @@ const data = {
       title: "Settings",
       url: "/user/settings",
       icon: SettingsIcon,
+    },
+    {
+      title: "Resource Library",
+      url: "/user/resource-library",
+      icon: BookOpenCheckIcon,
     },
   ],
 };
