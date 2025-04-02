@@ -37,10 +37,6 @@ const routeList: RouteProps[] = [
     href: "/#faq",
     label: "Services",
   },
-  {
-    href: "/#pricing",
-    label: "Contact Us",
-  },
 ];
 
 export const Navbar = () => {
