@@ -19,34 +19,12 @@ export const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3 className="font-bold text-lg">More</h3>
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="https://github.com/rikhisingh"
-              className="opacity-60 hover:opacity-100"
-            >
-              Careers
-            </a>
-          </div>
-
-          <div>
-            <a
-              rel="noreferrer noopener"
-              href="https://www.linkedin.com/in/rikhi-singh"
-              className="opacity-60 hover:opacity-100"
-            >
-              Contact Us
-            </a>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-2">
           <h3 className="font-bold text-lg">Rikhi Singh</h3>
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="https://github.com/rikhisingh"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
             >
               GitHub
@@ -56,7 +34,8 @@ export const Footer = () => {
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.linkedin.com/in/rikhi-singh"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
             >
               LinkedIn
@@ -69,9 +48,10 @@ export const Footer = () => {
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="https://github.com/MerrickPilon7730"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
-            >
+              >
               GitHub
             </a>
           </div>
@@ -79,7 +59,8 @@ export const Footer = () => {
           <div>
             <a
               rel="noreferrer noopener"
-              href="#"
+              href="https://www.linkedin.com/in/merrick-pilon/"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
             >
               LinkedIn
@@ -91,6 +72,7 @@ export const Footer = () => {
             <a
               rel="noreferrer noopener"
               href="#"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
             >
               GitHub
@@ -101,6 +83,7 @@ export const Footer = () => {
             <a
               rel="noreferrer noopener"
               href="#"
+              target="_blank"
               className="opacity-60 hover:opacity-100"
             >
               LinkedIn
