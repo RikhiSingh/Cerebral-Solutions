@@ -57,18 +57,18 @@ const teamList: TeamProps[] = [
     ],
   },
   {
-    imageUrl: "/app-icons/dev/harsh.jpeg",
+    imageUrl: "/app-icons/dev/harsh.jpg",
     name: "Harsh",
     position: "Lead Developer",
     description: "Lead Developer at Cerebral Solutions Team",
     socialNetworks: [
       {
         name: "Linkedin",
-        url: "https://www.linkedin.com/in/rikhi-singh",
+        url: "",
       },
       {
         name: "GitHub",
-        url: "https://github.com/rikhisingh",
+        url: "",
       },
     ],
   },
