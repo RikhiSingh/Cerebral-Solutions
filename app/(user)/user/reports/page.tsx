@@ -20,7 +20,7 @@ export default function Reports() {
 
         saveSurvey({ userId: session.user.id as string, responses, result })
           .then(() => {
-            console.log("Cached survey responses saved.");
+            // console.log("Cached survey responses saved.");
             localStorage.removeItem("surveyResponses");
             localStorage.removeItem("surveyResult");
           })

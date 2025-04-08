@@ -6,7 +6,7 @@ export const Newsletter = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("Subscribed!");
+    // console.log("Subscribed!");
   };
 
   return (

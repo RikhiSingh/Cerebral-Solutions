@@ -69,7 +69,7 @@ export default function Survey() {
   };
 
   const handleSubmit = async () => {
-    console.log("User answers:", answers);
+    // console.log("User answers:", answers);
     localStorage.setItem("surveyResponses", JSON.stringify(answers));
     try {
       // Begin AI processing and show the loading screen.
@@ -78,7 +78,7 @@ export default function Survey() {
         responses: answers,
         session: session?.user.id,
       });
-      console.log("AI result:", aiResult);
+      // console.log("AI result:", aiResult);
       setLoadingAi(false);
       if (!session) {
         localStorage.setItem("surveyResult", JSON.stringify(aiResult));

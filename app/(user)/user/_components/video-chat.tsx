@@ -134,7 +134,7 @@ const VideoChat: React.FC = () => {
 
       {/* Incoming Call Modal */}
       {incomingCall && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div className="fixed top-0 z-[9999999999999] left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg text-center">
             <h2 className="text-lg font-bold mb-4">Incoming Call</h2>
             <p>Peer ID: {incomingCall.peer}</p>
