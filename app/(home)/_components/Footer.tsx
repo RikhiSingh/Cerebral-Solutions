@@ -94,7 +94,7 @@ export const Footer = () => {
 
       <section className="container pb-14 text-center">
         <h3>
-          &copy; 2024 Cerebral Solutions -{" "}
+          &copy; 2025 Cerebral Solutions -{" "}
           <a
             rel="noreferrer noopener"
             target="_blank"
